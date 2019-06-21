@@ -1,0 +1,9 @@
+HELP.md
+webapp/target/
+!webapp/.mvn/wrapper/maven-wrapper.jar
+
+### IntelliJ IDEA ###
+webapp/.idea
+*.iws
+*.iml
+*.ipr
