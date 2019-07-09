@@ -29,6 +29,9 @@ jobs:
             chmod +x packer
             echo "Packer Version : " && ./packer --version
       - run:
+          name: Validate Packer Template
+          command: ./packer validate centos-ami-template.json      
+      - run:
           name: Build AMI
           command: |
             ./packer build \

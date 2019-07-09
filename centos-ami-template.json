@@ -32,20 +32,7 @@
     "provisioners": [
         {
             "type": "shell",
-            "environment_vars": [
-                "FOO=foo"
-            ],
-            "inline": [
-                "sudo yum update -y",
-                "sudo yum install wget -y",
-                "sudo yum install java-11-openjdk-devel -y",
-                "sudo wget http://www-us.apache.org/dist/tomcat/tomcat-9/v9.0.21/bin/apache-tomcat-9.0.21.tar.gz",
-                "sudo tar -xf apache-tomcat-9.0.21.tar.gz",
-                "sudo mv apache-tomcat-9.0.21 /opt/tomcat/",
-                "sudo echo 'export CATALINA_HOME='/usr/local/tomcat'' >> ~/.bashrc",
-                "source ~/.bashrc"
-
-            ]
+            "script": "./provision.sh"
         }
     ]
 }
