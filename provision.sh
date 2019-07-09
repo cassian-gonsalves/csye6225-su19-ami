@@ -64,7 +64,7 @@ echo "Installing CodeDeploy Agent"
 cd /tmp
 pwd
 ls -la
-sudo wget "https://aws-codedeploy-$AWS_DEFAULT_REGION.s3.$AWS_DEFAULT_REGION.amazonaws.com/latest/install"
+sudo wget "https://aws-codedeploy-$aws_region_id.s3.$aws_region_id.amazonaws.com/latest/install"
 sudo chmod +x ./install
 sudo ./install auto
 sudo service codedeploy-agent start
