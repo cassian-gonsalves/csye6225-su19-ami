@@ -1,4 +1,6 @@
 #!/bin/bash -xe
+echo "AWS REGION : $aws_region_id"
+
 echo "Updating existing packages"
 sudo yum update -y
 
