@@ -18,7 +18,7 @@
             "source_ami": "{{user `source_ami`}}",
             "ssh_username": "{{user `ssh_username`}}",
             "ami_name": "csye6225_{{timestamp}}",
-            "ami_description": "Centos AMI for CSYE 6225 - Summer 2019",
+            "ami_description": "Centos AMI for CSYE 6225-Summer 2019",
             "launch_block_device_mappings": [
                 {
                     "device_name": "/dev/sda1",
