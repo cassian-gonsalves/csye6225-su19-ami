@@ -1,0 +1,39 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.6.1
+
+    steps:
+      - checkout
+      - run:
+          name: Installing Packages
+          command: |
+            sudo rm /etc/apt/sources.list
+            echo "deb http://archive.debian.org/debian/ jessie-backports main" | sudo tee -a /etc/apt/sources.list
+            echo "deb-src http://archive.debian.org/debian/ jessie-backports main" | sudo tee -a /etc/apt/sources.list
+            echo "Acquire::Check-Valid-Until false;" | sudo tee -a /etc/apt/apt.conf.d/10-nocheckvalid
+            echo 'Package: *\nPin: origin "archive.debian.org"\nPin-Priority: 500' | sudo tee -a /etc/apt/preferences.d/10-archive-pin
+            sudo apt update
+            sudo apt install wget zip unzip -y
+      - run:
+          name: Installing awscli
+          command: |
+            sudo pip3 install awscli
+            aws --version
+      - run:
+          name: Download packer
+          command: |
+            wget -q https://releases.hashicorp.com/packer/1.4.2/packer_1.4.2_linux_amd64.zip
+            unzip packer*.zip
+            chmod +x packer
+            echo "Packer Version : " && ./packer --version
+      - run:
+          name: Validate Packer Template
+          command: ./packer validate centos-ami-template.json      
+      - run:
+          name: Build AMI
+          command: |
+            ./packer build \
+            -var "subnet_id=${AWS_SUBNET_ID}" \
+            centos-ami-template.json
