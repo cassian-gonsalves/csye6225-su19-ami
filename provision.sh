@@ -73,5 +73,8 @@ sudo service codedeploy-agent start
 sudo service codedeploy-agent status
 
 echo "Installing Cloudwatch Agent"
-sudo wget "https://s3.$aws_region_id.amazonaws.com/amazoncloudwatch-agent-$aws_region_id/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm"
+sudo wget "https://s3.$aws_region_id.amazonaws.com/amazoncloudwatch-agent-$aws_region_id/centos/amd64/latest/amazon-cloudwatch-agent.rpm"
 sudo rpm -U ./amazon-cloudwatch-agent.rpm
+systemctl status amazon-cloudwatch-agent
+systemctl start amazon-cloudwatch-agent
+systemctl status amazon-cloudwatch-agent
